@@ -13,7 +13,7 @@
  * David Sanderson straightened out a bunch of include file problems.
  */
 #include <assert.h>
-#include <curses.h>
+//#include <curses.h>
 #include <fcntl.h>
 #include <signal.h>
 #include <stdio.h>
@@ -78,7 +78,7 @@ extern int rotate_hi;
 
 extern void fpe_handler(int signum);
 
-extern WINDOW *curwin;
+//extern WINDOW *curwin;
 
 static int onroot = 0;
 static int fullscreen = 0;
@@ -147,6 +147,7 @@ static int mousefkey[4][4] /* [button][dir] */ = {
     {FIK_CTL_END, FIK_CTL_HOME, FIK_CTL_PAGE_DOWN, FIK_CTL_PAGE_UP}
 };
 
+#if 0
 /*
  *----------------------------------------------------------------------
  *
@@ -209,6 +210,7 @@ UnixInit()
         printf("ieee trapping not supported here \n");
 #endif
 }
+#endif
 
 /*
  *----------------------------------------------------------------------
@@ -229,6 +231,7 @@ UnixInit()
 void
 UnixDone()
 {
+#if 0
     if (!unixDisk) {
         doneXwindow();
     }
@@ -239,6 +242,7 @@ UnixDone()
     nocbreak();
     echo();
     endwin();
+#endif
 }
 
 /*
@@ -2118,6 +2122,7 @@ xgetfont()
     return fontPtr;
 }
 
+#if 0
 /*
  *----------------------------------------------------------------------
  *
@@ -2193,6 +2198,7 @@ shell_to_dos()
     signal(SIGINT, (SignalHandler)sigint);
     putchar('\n');
 }
+#endif
 
 /*
  *----------------------------------------------------------------------
