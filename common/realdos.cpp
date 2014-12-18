@@ -269,16 +269,9 @@ void blankrows(int row,int rows,int attr)
 
 void helptitle()
 {
-    char msg[MSGLEN],buf[MSGLEN];
+    char msg[MSGLEN], buf[MSGLEN];
     driver_set_clear(); // clear the screen
-#ifdef XFRACT
-    sprintf(msg,"XFRACTINT  Version %d.%02d (FRACTINT Version %d.%02d)",
-            xrelease/100,xrelease%100, g_release/100,g_release%100);
-#else
-    *msg=0;
-#endif
-    sprintf(buf,"FRACTINT Version %d.%01d",g_release/100,(g_release%100)/10);
-    strcat(msg,buf);
+    sprintf(msg,"FRACTINT Version %d.%01d",g_release/100,(g_release%100)/10);
     if (g_release%10) {
         sprintf(buf,"%01d",g_release%10);
         strcat(msg,buf);
@@ -290,11 +283,9 @@ void helptitle()
     putstringcenter(0,0,80,C_TITLE,msg);
 
     // uncomment next for production executable:
-#if defined(PRODUCTION) || defined(XFRACT)
-    return;
-    //NOTREACHED
-#else
-    if (debugflag == 3002) return;
+#if !defined(PRODUCTION)
+    if (debugflag == 3002)
+        return;
 #define DEVELOPMENT
 #ifdef DEVELOPMENT
     driver_put_string(0, 2, C_TITLE_DEV, "Development Version");
