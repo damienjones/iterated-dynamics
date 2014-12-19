@@ -220,7 +220,7 @@ int big_while_loop(bool *kbdmore, bool *stacked, bool resumeflag)
                 }
             }
             dxsize = xdots - 1;            // convert just once now
-            dysize = ydots - 1;
+            d_y_size = ydots - 1;
         }
         // assume we save next time (except jb)
         savedac = (savedac == 0) ? 2 : 1;
@@ -1732,7 +1732,7 @@ static int evolver_menu_switch(int *kbdchar, bool *frommandel, bool *kbdmore, bo
                 if (py > (gridsz-1)) py = 0;
                 int grout = !((evolving & NOGROUT)/NOGROUT) ;
                 sxoffs = px * (int)(dxsize+1+grout);
-                syoffs = py * (int)(dysize+1+grout);
+                syoffs = py * (int)(d_y_size+1+grout);
 
                 param_history(1); // restore old history
                 fiddleparms(gene, unspiralmap()); // change all parameters
@@ -1797,7 +1797,7 @@ static int evolver_menu_switch(int *kbdchar, bool *frommandel, bool *kbdmore, bo
                     // set screen view params back (previously changed to allow full screen saves in viewwindow mode)
                     int grout = !((evolving & NOGROUT) / NOGROUT);
                     sxoffs = px * (int)(dxsize+1+grout);
-                    syoffs = py * (int)(dysize+1+grout);
+                    syoffs = py * (int)(d_y_size+1+grout);
                     SetupParamBox();
                     drawparmbox(0);
                 }
@@ -2034,7 +2034,7 @@ static void move_zoombox(int keynum)
         }
     }
     if (boxcount) {
-        moveboxf((double)horizontal/dxsize,(double)vertical/dysize);
+        moveboxf((double)horizontal/dxsize,(double)vertical/d_y_size);
     }
 #ifndef XFRACT
     else                                 // if no zoombox, scroll by arrows

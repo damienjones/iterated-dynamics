@@ -1050,7 +1050,7 @@ int cmdarg(char *curarg, int mode) // process a single argument
             xdots = filexdots;
             ydots = fileydots;
             dxsize = xdots - 1;
-            dysize = ydots - 1;
+            d_y_size = ydots - 1;
             calcfracinit();
             make_batch_file();
 #if !defined(XFRACT)
